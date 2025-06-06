@@ -6,15 +6,16 @@ const Seven = () => {
   const textToCopy = `
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 
 struct searchtree {
     int element;
     struct searchtree *left, *right;
-} *root;
+};
 
 typedef struct searchtree *node;
 typedef int ElementType;
+
+node root = NULL;
 
 node insert(ElementType x, node t) {
     if (t == NULL) {
@@ -30,47 +31,41 @@ node insert(ElementType x, node t) {
     return t;
 }
 
+node findmin(node t) {
+    if (t == NULL || t->left == NULL)
+        return t;
+    return findmin(t->left);
+}
+
+node findmax(node t) {
+    if (t == NULL || t->right == NULL)
+        return t;
+    return findmax(t->right);
+}
+
 node delete(ElementType x, node t) {
     node temp;
     if (t == NULL) {
-        printf("/nElement not found");
+        printf("/nElement not found/n");
+    } else if (x < t->element) {
+        t->left = delete(x, t->left);
+    } else if (x > t->element) {
+        t->right = delete(x, t->right);
     } else {
-        if (x < t->element)
-            t->left = delete(x, t->left);
-        else if (x > t->element)
-            t->right = delete(x, t->right);
-        else {
-            if (t->left && t->right) {
-                temp = findmin(t->right);
-                t->element = temp->element;
-                t->right = delete(t->element, t->right);
-            } else {
-                temp = t;
-                if (t->left == NULL)
-                    t = t->right;
-                else
-                    t = t->left;
-                free(temp);
-            }
+        if (t->left && t->right) {
+            temp = findmin(t->right);
+            t->element = temp->element;
+            t->right = delete(t->element, t->right);
+        } else {
+            temp = t;
+            if (t->left == NULL)
+                t = t->right;
+            else
+                t = t->left;
+            free(temp);
         }
     }
     return t;
-}
-
-void makeempty() {
-    root = NULL;
-}
-
-node findmin(node temp) {
-    if (temp == NULL || temp->left == NULL)
-        return temp;
-    return findmin(temp->left);
-}
-
-node findmax(node temp) {
-    if (temp == NULL || temp->right == NULL)
-        return temp;
-    return findmax(temp->right);
 }
 
 node find(ElementType x, node t) {
@@ -78,29 +73,27 @@ node find(ElementType x, node t) {
         return NULL;
     if (x < t->element)
         return find(x, t->left);
-    if (x > t->element)
+    else if (x > t->element)
         return find(x, t->right);
-    return t;
+    else
+        return t;
 }
 
 void display(node t, int level) {
-    int i;
-    if (t) {
+    if (t != NULL) {
         display(t->right, level + 1);
         printf("/n");
-        for (i = 0; i < level; i++)
+        for (int i = 0; i < level; i++)
             printf("    ");
         printf("%d", t->element);
         display(t->left, level + 1);
     }
 }
 
-void main() {
+int main() {
     int ch;
     ElementType a;
     node temp;
-    clrscr();
-    makeempty();
     while (1) {
         printf("/n1. Insert/n2. Delete/n3. Find/n4. Find Min/n5. Find Max/n6. Display/n7. Exit/nEnter Your Choice: ");
         scanf("%d", &ch);
@@ -150,7 +143,7 @@ void main() {
                 printf("Invalid Choice/n");
         }
     }
-    getch();
+    return 0;
 }
 `;
 

@@ -5,9 +5,8 @@ const Nine = () => {
   const [copied, setCopied] = useState(false);
   const textToCopy = `
 #include <stdio.h>
-#include <conio.h>
 #define INF 9999
-#define tree_array_size 20
+#define TREE_ARRAY_SIZE 20
 
 int heap_size = 0;
 
@@ -86,11 +85,10 @@ void print_heap(int A[]) {
     printf("/n");
 }
 
-void main() {
-    int A[tree_array_size];
+int main() {
+    int A[TREE_ARRAY_SIZE];
     int n, i, num;
 
-    clrscr();
     printf("Priority Queue using Min Heap:/n");
     printf("Enter the number of elements: ");
     scanf("%d", &n);
@@ -101,7 +99,8 @@ void main() {
     }
     printf("PQueue: ");
     print_heap(A);
-    getch();
+
+    return 0;
 }
 `;
 

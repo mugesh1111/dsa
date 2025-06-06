@@ -13,13 +13,19 @@ struct stack {
     float a[50];
 } s;
 
-void main() {
+int main() {
     char pf[50];
     float d1, d2;
     int i;
     s.top = -1;
     printf("Enter the postfix expression: ");
-    gets(pf);
+    fgets(pf, sizeof(pf), stdin);
+    
+    size_t len = strlen(pf);
+    if (len > 0 && pf[len - 1] == '/n') {
+        pf[len - 1] = '/0';
+    }
+
     for (i = 0; pf[i] != '/0'; i++) {
         switch (pf[i]) {
             case '0': case '1': case '2': case '3': case '4':
@@ -48,15 +54,18 @@ void main() {
                     s.a[++s.top] = d2 / d1;
                 else {
                     printf("Error: Division by zero/n");
-                    return;
+                    return 1;
                 }
+                break;
+            case ' ':
                 break;
             default:
                 printf("Invalid character encountered: %c/n", pf[i]);
-                return;
+                return 1;
         }
     }
     printf("Expression value is: %.2f/n", s.a[s.top]);
+    return 0;
 }
 `;
   const textToCopy1 = `
@@ -105,7 +114,7 @@ int isOperator(char symbol) {
 void convertInfixToPostfix(char infix[], char postfix[]) {
     int i, j = 0;
     char symbol;
-    stack[++top] = '#';
+    push('#');
     for (i = 0; i < strlen(infix); i++) {
         symbol = infix[i];
         if (!isOperator(symbol)) {
@@ -132,7 +141,9 @@ void convertInfixToPostfix(char infix[], char postfix[]) {
 int main() {
     char infix[20], postfix[20];
     printf("Enter a valid infix expression: ");
-    gets(infix);
+    fgets(infix, sizeof(infix), stdin);
+    size_t len = strlen(infix);
+    if (len > 0 && infix[len - 1] == '/n') infix[len - 1] = '/0';
     convertInfixToPostfix(infix, postfix);
     printf("The corresponding postfix expression is: ");
     puts(postfix);
