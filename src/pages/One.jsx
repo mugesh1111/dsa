@@ -217,25 +217,24 @@ void print() {
 }
 
 int main() {
-    dequeue(); // Underflow condition
+    dequeue();
     enqueue(15);
     enqueue(20);
     enqueue(25);
     enqueue(30);
     enqueue(35);
-    print(); // Expected: 15 20 25 30 35
-    dequeue(); // Removes 15
-    dequeue(); // Removes 20
-    print();   // Expected: 25 30 35
+    print();
+    dequeue();
+    dequeue();
+    print();
     enqueue(40);
     enqueue(45);
     enqueue(50);
-    enqueue(55); // Overflow condition
-    print(); // Expected: 25 30 35 40 45 50
+    enqueue(55);
+    print();
     return 0;
 }
 `;
-
 
   const handleCopyA = async () => {
     try {

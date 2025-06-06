@@ -116,7 +116,7 @@ void convertInfixToPostfix(char infix[], char postfix[]) {
             } else if (symbol == ')') {
                 while (stack[top] != '(')
                     postfix[j++] = pop();
-                pop(); // pop '('
+                pop();
             } else {
                 while (precedence(symbol) <= precedence(stack[top]) && stack[top] != '#')
                     postfix[j++] = pop();
