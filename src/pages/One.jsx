@@ -6,237 +6,236 @@ const   One = () => {
   const [copied2, setCopied2] = useState(false);
   const [copied3, setCopied3] = useState(false);
   const textToCopy = `
-  #include <stdio.h>
-  #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-  #define MAX 5
-  static int stack[MAX];
-  int top = -1;
+#define MAX 5
+static int stack[MAX];
+int top = -1;
 
-  void push(int x) {
-      stack[++top] = x;
-  }
+void push(int x) {
+    stack[++top] = x;
+}
 
-  int pop() {
-      return stack[top--];
-  }
+int pop() {
+    return stack[top--];
+}
 
-  void view() {
-      int i;
-      if (top < 0) {
-          printf("\$nStack is Empty\$n");
-      } else {
-          printf("\$nTop --> ");
-          for (i = top; i >= 0; i--) {
-              printf("%4d", stack[i]);
-          }
-          printf("\$n");
-      }
-  }
+void view() {
+    int i;
+    if (top < 0) {
+        printf("/nStack is Empty/n");
+    } else {
+        printf("/nTop --> ");
+        for (i = top; i >= 0; i--) {
+            printf("%4d", stack[i]);
+        }
+        printf("/n");
+    }
+}
 
-  int main() {
-      int ch = 0, val;
-      while (ch != 4) {
-          printf("\$nSTACK OPERATION\$n");
-          printf("1. PUSH\$n");
-          printf("2. POP\$n");
-          printf("3. VIEW\$n");
-          printf("4. QUIT\$n");
-          printf("Enter Choice: ");
-          scanf("%d", &ch);
+int main() {
+    int ch = 0, val;
+    while (ch != 4) {
+        printf("/nSTACK OPERATION/n");
+        printf("1. PUSH/n");
+        printf("2. POP/n");
+        printf("3. VIEW/n");
+        printf("4. QUIT/n");
+        printf("Enter Choice: ");
+        scanf("%d", &ch);
 
-          switch (ch) {
-              case 1:
-                  if (top < MAX - 1) {
-                      printf("Enter Stack Element: ");
-                      scanf("%d", &val);
-                      push(val);
-                  } else {
-                      printf("\$nStack Overflow\$n");
-                  }
-                  break;
+        switch (ch) {
+            case 1:
+                if (top < MAX - 1) {
+                    printf("Enter Stack Element: ");
+                    scanf("%d", &val);
+                    push(val);
+                } else {
+                    printf("/nStack Overflow/n");
+                }
+                break;
 
-              case 2:
-                  if (top < 0) {
-                      printf("\$nStack Underflow\$n");
-                  } else {
-                      val = pop();
-                      printf("\$nPopped element is %d\$n", val);
-                  }
-                  break;
+            case 2:
+                if (top < 0) {
+                    printf("/nStack Underflow/n");
+                } else {
+                    val = pop();
+                    printf("/nPopped element is %d/n", val);
+                }
+                break;
 
-              case 3:
-                  view();
-                  break;
+            case 3:
+                view();
+                break;
 
-              case 4:
-                  exit(0);
+            case 4:
+                exit(0);
 
-              default:
-                  printf("\$nInvalid Choice\$n");
-          }
-      }
-      return 0;
-  }
-  `;
+            default:
+                printf("/nInvalid Choice/n");
+        }
+    }
+    return 0;
+}
+`;
   const textToCopy2 = `
-  #include <stdio.h>
-  #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-  #define MAX 5
-  static int queue[MAX];
-  int front = -1;
-  int rear = -1;
+#define MAX 5
+static int queue[MAX];
+int front = -1;
+int rear = -1;
 
-  void insert(int x) {
-      if (rear == MAX - 1) {
-          printf("\$nQueue Full\$n");
-          return;
-      }
-      queue[++rear] = x;
-      if (front == -1)
-          front = 0;
-  }
+void insert(int x) {
+    if (rear == MAX - 1) {
+        printf("/nQueue Full/n");
+        return;
+    }
+    queue[++rear] = x;
+    if (front == -1)
+        front = 0;
+}
 
-  int deleteQueue() {
-      int val;
-      if (front == -1) {
-          printf("\$nQueue Empty\$n");
-          return -1;
-      }
-      val = queue[front];
-      front++;
-      if (front > rear)
-          front = rear = -1;
-      return val;
-  }
+int deleteQueue() {
+    int val;
+    if (front == -1) {
+        printf("/nQueue Empty/n");
+        return -1;
+    }
+    val = queue[front];
+    front++;
+    if (front > rear)
+        front = rear = -1;
+    return val;
+}
 
-  void view() {
-      int i;
-      if (front == -1)
-          printf("\$nQueue Empty\$n");
-      else {
-          printf("\$nFront --> ");
-          for (i = front; i <= rear; i++)
-              printf("%4d", queue[i]);
-          printf(" <-- Rear\$n");
-      }
-  }
+void view() {
+    int i;
+    if (front == -1)
+        printf("/nQueue Empty/n");
+    else {
+        printf("/nFront --> ");
+        for (i = front; i <= rear; i++)
+            printf("%4d", queue[i]);
+        printf(" <-- Rear/n");
+    }
+}
 
-  int main() {
-      int ch = 0, val;
-      while (ch != 4) {
-          printf("\$nQUEUE OPERATION\$n");
-          printf("1. INSERT\$n");
-          printf("2. DELETE\$n");
-          printf("3. VIEW\$n");
-          printf("4. QUIT\$n");
-          printf("Enter Choice: ");
-          scanf("%d", &ch);
+int main() {
+    int ch = 0, val;
+    while (ch != 4) {
+        printf("/nQUEUE OPERATION/n");
+        printf("1. INSERT/n");
+        printf("2. DELETE/n");
+        printf("3. VIEW/n");
+        printf("4. QUIT/n");
+        printf("Enter Choice: ");
+        scanf("%d", &ch);
 
-          switch (ch) {
-              case 1:
-                  printf("Enter element to be inserted: ");
-                  scanf("%d", &val);
-                  insert(val);
-                  break;
-              case 2:
-                  val = deleteQueue();
-                  if (val != -1)
-                      printf("Element deleted: %d\$n", val);
-                  break;
-              case 3:
-                  view();
-                  break;
-              case 4:
-                  exit(0);
-              default:
-                  printf("Invalid Choice\$n");
-          }
-      }
-      return 0;
-  }
-
-  `;
+        switch (ch) {
+            case 1:
+                printf("Enter element to be inserted: ");
+                scanf("%d", &val);
+                insert(val);
+                break;
+            case 2:
+                val = deleteQueue();
+                if (val != -1)
+                    printf("Element deleted: %d/n", val);
+                break;
+            case 3:
+                view();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Invalid Choice/n");
+        }
+    }
+    return 0;
+}
+`;
   const textToCopy3 = `
-  #include <stdio.h>
+#include <stdio.h>
 
-  #define CAPACITY 6
-  int queue[CAPACITY];
-  int front = -1, rear = -1;
+#define CAPACITY 6
+int queue[CAPACITY];
+int front = -1, rear = -1;
 
-  int checkFull() {
-      return (front == (rear + 1) % CAPACITY);
-  }
+int checkFull() {
+    return (front == (rear + 1) % CAPACITY);
+}
 
-  int checkEmpty() {
-      return (front == -1);
-  }
+int checkEmpty() {
+    return (front == -1);
+}
 
-  void enqueue(int value) {
-      if (checkFull()) {
-          printf("Overflow condition\$n");
-      } else {
-          if (front == -1)
-              front = 0;
-          rear = (rear + 1) % CAPACITY;
-          queue[rear] = value;
-          printf("%d was enqueued to circular queue\$n", value);
-      }
-  }
+void enqueue(int value) {
+    if (checkFull()) {
+        printf("Overflow condition/n");
+    } else {
+        if (front == -1)
+            front = 0;
+        rear = (rear + 1) % CAPACITY;
+        queue[rear] = value;
+        printf("%d was enqueued to circular queue/n", value);
+    }
+}
 
-  int dequeue() {
-      int variable;
-      if (checkEmpty()) {
-          printf("Underflow condition\$n");
-          return -1;
-      } else {
-          variable = queue[front];
-          if (front == rear) {
-              front = rear = -1;
-          } else {
-              front = (front + 1) % CAPACITY;
-          }
-          printf("%d was dequeued from circular queue\$n", variable);
-          return variable;
-      }
-  }
+int dequeue() {
+    int variable;
+    if (checkEmpty()) {
+        printf("Underflow condition/n");
+        return -1;
+    } else {
+        variable = queue[front];
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % CAPACITY;
+        }
+        printf("%d was dequeued from circular queue/n", variable);
+        return variable;
+    }
+}
 
-  void print() {
-      if (checkEmpty()) {
-          printf("Queue is empty\$n");
-      } else {
-          printf("\$nThe queue looks like:\$n");
-          int i = front;
-          while (1) {
-              printf("%d ", queue[i]);
-              if (i == rear) break;
-              i = (i + 1) % CAPACITY;
-          }
-          printf("\$n\$n");
-      }
-  }
+void print() {
+    if (checkEmpty()) {
+        printf("Queue is empty/n");
+    } else {
+        printf("/nThe queue looks like:/n");
+        int i = front;
+        while (1) {
+            printf("%d ", queue[i]);
+            if (i == rear) break;
+            i = (i + 1) % CAPACITY;
+        }
+        printf("/n/n");
+    }
+}
 
-  int main() {
-      dequeue(); // Underflow condition
-      enqueue(15);
-      enqueue(20);
-      enqueue(25);
-      enqueue(30);
-      enqueue(35);
-      print(); // Expected: 15 20 25 30 35
-      dequeue(); // Removes 15
-      dequeue(); // Removes 20
-      print();   // Expected: 25 30 35
-      enqueue(40);
-      enqueue(45);
-      enqueue(50);
-      enqueue(55); // Overflow condition
-      print(); // Expected: 25 30 35 40 45 50
-      return 0;
-  }
+int main() {
+    dequeue(); // Underflow condition
+    enqueue(15);
+    enqueue(20);
+    enqueue(25);
+    enqueue(30);
+    enqueue(35);
+    print(); // Expected: 15 20 25 30 35
+    dequeue(); // Removes 15
+    dequeue(); // Removes 20
+    print();   // Expected: 25 30 35
+    enqueue(40);
+    enqueue(45);
+    enqueue(50);
+    enqueue(55); // Overflow condition
+    print(); // Expected: 25 30 35 40 45 50
+    return 0;
+}
+`;
 
-  `;
 
   const handleCopyA = async () => {
     try {

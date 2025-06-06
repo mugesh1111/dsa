@@ -4,107 +4,107 @@ import { useState } from "react";
 const Nine = () => {
   const [copied, setCopied] = useState(false);
   const textToCopy = `
-  #include <stdio.h>
-  #include <conio.h>
-  #define INF 9999
-  #define tree_array_size 20
+#include <stdio.h>
+#include <conio.h>
+#define INF 9999
+#define tree_array_size 20
 
-  int heap_size = 0;
+int heap_size = 0;
 
-  void swap(int *a, int *b) {
-      int t = *a;
-      *a = *b;
-      *b = t;
-  }
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
 
-  int get_left_child(int index) {
-      if ((2 * index) <= heap_size) return 2 * index;
-      return -1;
-  }
+int get_left_child(int index) {
+    if ((2 * index) <= heap_size) return 2 * index;
+    return -1;
+}
 
-  int get_right_child(int index) {
-      if ((2 * index + 1) <= heap_size) return 2 * index + 1;
-      return -1;
-  }
+int get_right_child(int index) {
+    if ((2 * index + 1) <= heap_size) return 2 * index + 1;
+    return -1;
+}
 
-  int get_parent(int index) {
-      if (index > 1) return index / 2;
-      return -1;
-  }
+int get_parent(int index) {
+    if (index > 1) return index / 2;
+    return -1;
+}
 
-  void min_heapify(int A[], int index) {
-      int left = get_left_child(index);
-      int right = get_right_child(index);
-      int smallest = index;
+void min_heapify(int A[], int index) {
+    int left = get_left_child(index);
+    int right = get_right_child(index);
+    int smallest = index;
 
-      if (left != -1 && A[left] < A[smallest]) smallest = left;
-      if (right != -1 && A[right] < A[smallest]) smallest = right;
+    if (left != -1 && A[left] < A[smallest]) smallest = left;
+    if (right != -1 && A[right] < A[smallest]) smallest = right;
 
-      if (smallest != index) {
-          swap(&A[index], &A[smallest]);
-          min_heapify(A, smallest);
-      }
-  }
+    if (smallest != index) {
+        swap(&A[index], &A[smallest]);
+        min_heapify(A, smallest);
+    }
+}
 
-  void build_min_heap(int A[]) {
-      for (int i = heap_size / 2; i >= 1; i--) {
-          min_heapify(A, i);
-      }
-  }
+void build_min_heap(int A[]) {
+    for (int i = heap_size / 2; i >= 1; i--) {
+        min_heapify(A, i);
+    }
+}
 
-  int minimum(int A[]) {
-      return A[1];
-  }
+int minimum(int A[]) {
+    return A[1];
+}
 
-  int extract_min(int A[]) {
-      if (heap_size == 0) return -1;
-      int minm = A[1];
-      A[1] = A[heap_size];
-      heap_size--;
-      min_heapify(A, 1);
-      return minm;
-  }
+int extract_min(int A[]) {
+    if (heap_size == 0) return -1;
+    int minm = A[1];
+    A[1] = A[heap_size];
+    heap_size--;
+    min_heapify(A, 1);
+    return minm;
+}
 
-  void decrease_key(int A[], int index, int key) {
-      A[index] = key;
-      while (index > 1 && A[get_parent(index)] > A[index]) {
-          swap(&A[index], &A[get_parent(index)]);
-          index = get_parent(index);
-      }
-  }
+void decrease_key(int A[], int index, int key) {
+    A[index] = key;
+    while (index > 1 && A[get_parent(index)] > A[index]) {
+        swap(&A[index], &A[get_parent(index)]);
+        index = get_parent(index);
+    }
+}
 
-  void insert(int A[], int key) {
-      heap_size++;
-      A[heap_size] = INF;
-      decrease_key(A, heap_size, key);
-  }
+void insert(int A[], int key) {
+    heap_size++;
+    A[heap_size] = INF;
+    decrease_key(A, heap_size, key);
+}
 
-  void print_heap(int A[]) {
-      for (int i = 1; i <= heap_size; i++) {
-          printf("%d ", A[i]);
-      }
-      printf("/n");
-  }
+void print_heap(int A[]) {
+    for (int i = 1; i <= heap_size; i++) {
+        printf("%d ", A[i]);
+    }
+    printf("/n");
+}
 
-  void main() {
-      int A[tree_array_size];
-      int n, i, num;
+void main() {
+    int A[tree_array_size];
+    int n, i, num;
 
-      clrscr();
-      printf("Priority Queue using Min Heap:/n");
-      printf("Enter the number of elements: ");
-      scanf("%d", &n);
-      printf("Enter elements:/n");
-      for (i = 0; i < n; i++) {
-          scanf("%d", &num);
-          insert(A, num);
-      }
-      printf("PQueue: ");
-      print_heap(A);
-      getch();
-  }
+    clrscr();
+    printf("Priority Queue using Min Heap:/n");
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    printf("Enter elements:/n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &num);
+        insert(A, num);
+    }
+    printf("PQueue: ");
+    print_heap(A);
+    getch();
+}
+`;
 
-  `;
 
   const handleCopy = async () => {
     try {
