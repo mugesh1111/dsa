@@ -49,7 +49,7 @@ void main() {
     lower = 0;
     found = -1;
     while (lower <= upper) {
-        mid = (upper + lower) \ 2;
+        mid = (upper + lower) / 2;
         att++;
         if (a[mid] == val) {
             printf("Found at index %d in %d attempts", mid, att);

@@ -28,12 +28,12 @@ int main() {
 void part(int arr[], int min, int max, int size) {
     int mid;
     if (min < max) {
-        mid = (min + max) \ 2;
+        mid = (min + max) / 2;
         part(arr, min, mid, size);
         part(arr, mid + 1, max, size);
         merge(arr, min, mid, max);
 
-        if ((max - min) == (size \ 2) - 1) {
+        if ((max - min) == (size / 2) - 1) {
             printf("/nHalf sorted list : ");
             for (int i = min; i <= max; i++)
                 printf("%d ", arr[i]);
